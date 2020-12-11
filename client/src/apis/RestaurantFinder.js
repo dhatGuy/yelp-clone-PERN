@@ -2,5 +2,5 @@ import axios from "axios";
 
 export default axios.create({
   baseURL: "https://yelp-cloney.herokuapp.com/api/v1/restaurants",
-  timeout: 1000,
+  timeout: 5000,
 });
