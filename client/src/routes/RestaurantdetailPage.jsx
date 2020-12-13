@@ -1,13 +1,16 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import RestaurantFinder from '../apis/RestaurantFinder';
 import AddReview from '../components/AddReview';
 import Reviews from '../components/Reviews';
 import StarRating from '../components/StarRating';
+import { Spinner } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { RestaurantsContext } from '../context/RestaurantsContext';
 
 const RestaurantdetailPage = () => {
   const {id} = useParams()
+  const [isLoading, setIsLoading] = useState(true)
   const {selectedRestaurant, setSelectedRestaurant} = useContext(RestaurantsContext)  
 
   useEffect(() => {
@@ -16,10 +19,23 @@ const RestaurantdetailPage = () => {
         const data = response.data.data
         setSelectedRestaurant(data);
       })
+      .then(()=>{
+        setIsLoading(prev => !prev)
+      })
       .catch((error) => {
         console.log(error);
       });
   }, [setSelectedRestaurant, id]);
+
+  if (isLoading) {
+    return (
+      <div className="d-flex justify-content-center">
+        <Spinner animation="border" role="status">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      </div>
+    );
+  }
 
   return (
     <div>

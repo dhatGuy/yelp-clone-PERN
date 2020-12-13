@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import RestaurantFinder from "../apis/RestaurantFinder";
 
 const AddReview = () => {
   const {id} = useParams()
+  const history = useHistory()
   const [name, setName] = useState("");
   const [rating, setRating] = useState(1);
   const [review, setReview] = useState("");
@@ -11,7 +12,7 @@ const AddReview = () => {
   const isDisabled = name.trim().length === 0 || review.trim().length === 0
 
   const handleSubmit = e => {
-    // e.preventDefault();
+    e.preventDefault();
     RestaurantFinder.post(`/${id}/addReview`, {
       name,
       rating,
@@ -21,6 +22,7 @@ const AddReview = () => {
       setName("");
       setRating(0);
       setReview("");
+      history.push('/')
     })
     .catch(function (error) {
       console.log(error);
