@@ -71,7 +71,6 @@ const RestaurantList = (props) => {
 
   return (
     <div className="table-responsive">
-      {console.log(isLoading)}
       <table className="table table-striped table-hover table-dark">
         <thead>
           <tr className="bg-primary">
