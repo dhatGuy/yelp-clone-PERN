@@ -6,9 +6,9 @@
   "engines": {
     "node": "12.x",
     "npm": "6.14.5"
-},
+  },
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

@@ -17,7 +17,7 @@ app
     try {
       // const results = await db.query("SELECT * FROM restaurants");
       const results = await db.query(
-        'select * from restaurants LEFT JOIN (SELECT restaurant_id, count(*), trunc(AVG(rating)) AS average_rating FROM reviews GROUP BY restaurant_id) reviews on restaurants.id = reviews.restaurant_id'
+        "select * from restaurants LEFT JOIN (SELECT restaurant_id, count(*), trunc(AVG(rating)) AS average_rating FROM reviews GROUP BY restaurant_id) reviews on restaurants.id = reviews.restaurant_id"
       );
       res.status(200).json({
         status: "success",
@@ -119,4 +119,4 @@ app.post(`/api/v1/restaurants/:id/addReview`, async (req, res) => {
   }
 });
 
-app.listen(PORT, () => console.log("Magic happening on PORT", +PORT)); 
+app.listen(PORT, () => console.log("Magic happening on PORT", +PORT));

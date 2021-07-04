@@ -13,7 +13,7 @@ VALUES ('Iya Toyosi', 'Sagamu', 3);
 
 CREATE TABLE reviews (
   id BIGSERIAL NOT NULL PRIMARY KEY,
-  restaurant_id BIGINT REFERENCES restaurants(id),
+  restaurant_id BIGINT REFERENCES restaurants(id) ON DELETE CASCADE,
   name VARCHAR(50) NOT NULL,
   review TEXT NOT NULL,
   rating INT NOT NULL check(
